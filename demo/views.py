@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework import status
 from rest_framework import viewsets
-from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import People, Planet
@@ -16,6 +15,7 @@ class PlanetModelViewSet(viewsets.ModelViewSet):
 
     serializer_class = PlanetSerializer
     queryset = Planet.objects.all()
+
 
 
 class PeopleModelViewSet(viewsets.ModelViewSet):

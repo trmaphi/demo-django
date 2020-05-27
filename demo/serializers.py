@@ -15,7 +15,6 @@ class PeopleSerializer(serializers.Serializer):
     class Meta:
         model = People
 
-
 class PlanetSerializer(serializers.Serializer):
 
     class Meta:
