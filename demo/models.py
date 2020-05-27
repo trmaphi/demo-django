@@ -6,12 +6,14 @@ from django.db import models
 
 
 class Planet(models.Model):
+
     name = models.CharField(max_length=255)
     population = models.IntegerField(null=True, blank=True)
     diameter = models.IntegerField(null=True, blank=True)
 
 
 class People(models.Model):
+
     HAIR_COLOR_CHOICES = (
         ('blond', 'Blond'),
         ('black', 'Black'),

@@ -3,6 +3,7 @@ from .models import People, Planet
 
 
 class PeopleSerializer(serializers.Serializer):
+
     name = serializers.CharField(max_length=255)
     homeworld = serializers.PrimaryKeyRelatedField(
         queryset=Planet.objects.all())
@@ -11,9 +12,11 @@ class PeopleSerializer(serializers.Serializer):
     hair_color = serializers.ChoiceField(choices=People.HAIR_COLOR_CHOICES)
     created = serializers.DateTimeField()
 
-
-class PeopleModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = People
-        fields = ('name', 'homeworld', 'height',
-                  'mass', 'hair_color', 'created')
+
+
+class PlanetSerializer(serializers.Serializer):
+
+    class Meta:
+        model = Planet
