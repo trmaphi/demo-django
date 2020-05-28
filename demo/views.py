@@ -25,6 +25,13 @@ class PlanetModelViewSet(viewsets.ModelViewSet):
         serializer = PlanetSerializer(planet)
         return Response(serializer.data)
 
+    def create(self, request):
+        serializer = PeopleModelSerializer(data=request.data)
+        if serializer.is_valid():
+            PlanetSerializer.create(serializer.validated_data)
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
 
 class PeopleModelViewSet(viewsets.ModelViewSet):
 
@@ -43,12 +50,7 @@ class PeopleModelViewSet(viewsets.ModelViewSet):
     def create(self, request):
         serializer = PeopleModelSerializer(data=request.data)
         if serializer.is_valid():
-            People.objects.create(
-                name=serializer.validated_data['name'],
-                homeworld=serializer.validated_data['homeworld'],
-                height=serializer.validated_data['height'],
-                mass=serializer.validated_data['mass'],
-                hair_color=serializer.validated_data['hair_color'])
+            PeopleSerializer.create(serializer.validated_data)
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors,
                         status=status.HTTP_400_BAD_REQUEST)

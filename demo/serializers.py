@@ -4,6 +4,7 @@ from .models import People, Planet
 
 class PeopleSerializer(serializers.Serializer):
 
+    # Apply to all object
     name = serializers.CharField(max_length=255)
     homeworld = serializers.PrimaryKeyRelatedField(
         queryset=Planet.objects.all())
@@ -15,18 +16,9 @@ class PeopleSerializer(serializers.Serializer):
     class Meta:
         model = People
 
-    # Create from validate data
+    # Validated data will be used to create object
     def create(self, validated_data):
         return People.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.title)
-        instance.homeworld = validated_data.get('homeworld', instance.code)
-        instance.height = validated_data.get('height', instance.linenos)
-        instance.mass = validated_data.get('mass', instance.language)
-        instance.hair_color = validated_data.get('hair_color', instance.style)
-        instance.save()
-        return instance
 
 class PlanetSerializer(serializers.Serializer):
 
@@ -34,6 +26,6 @@ class PlanetSerializer(serializers.Serializer):
         model = Planet
 
 
-    # Create from validate data
+    # Validated data will be used to create object
     def create(self, validated_data):
         return People.objects.create(**validated_data)

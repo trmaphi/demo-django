@@ -1,5 +1,4 @@
 Demo Django RESTful API
-
 ---
 
 # Getting started
