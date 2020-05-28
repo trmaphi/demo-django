@@ -15,13 +15,15 @@ class PlanetModelViewSet(viewsets.ModelViewSet):
 
     serializer_class = PlanetSerializer
     queryset = Planet.objects.all()
+    # Public
+    # permission_classes
 
     def list(self, request):
-        serializer = PlanetSerializer(self.queryset, many=True)
+        serializer = PlanetSerializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        planet = get_object_or_404(self.queryset, pk=pk)
+        planet = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = PlanetSerializer(planet)
         return Response(serializer.data)
 
@@ -30,20 +32,24 @@ class PlanetModelViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             PlanetSerializer.create(serializer.validated_data)
             return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,
-                        status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 class PeopleModelViewSet(viewsets.ModelViewSet):
 
     serializer_class = PeopleSerializer
     queryset = People.objects.all()
+    # Public
+    # permission_classes
 
     def list(self, request):
-        serializer = PeopleSerializer(self.queryset, many=True)
+        serializer = PeopleSerializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        people = get_object_or_404(self.queryset, pk=pk)
+        people = get_object_or_404(self.get_queryset(), pk=pk)
         serializer = PeopleSerializer(people)
         return Response(serializer.data)
 
@@ -52,6 +58,8 @@ class PeopleModelViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             PeopleSerializer.create(serializer.validated_data)
             return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,
-                        status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
