@@ -21,7 +21,9 @@ class People(models.Model):
         ('red', 'Red'),
     )
     name = models.CharField(max_length=255)
-    homeworld = models.ForeignKey(Planet, on_delete=models.CASCADE)
+    homeworld = models.ForeignKey(Planet,
+    on_delete=models.CASCADE
+    )
     height = models.IntegerField(null=True, blank=True)
     mass = models.IntegerField(null=True, blank=True)
     hair_color = models.CharField(
