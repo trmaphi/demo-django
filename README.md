@@ -6,7 +6,7 @@ Demo Django RESTful API
 Two end-points:
 
 * localhost:8000/admin - check internal of object
-* localhost:8000/api - API endpoint to expose
+* localhost:8000/api/v1 - API endpoint to expose
 
 - Install dependencies
 
