@@ -26,8 +26,5 @@ router.register(r'planet', views.PlanetModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Add new path
-    path('people/', views.People),
-    path('planet/', views.Planet),
     url(r'^api/', include(router.urls)),
 ]
